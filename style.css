@@ -1,31 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lógica de Programação | Urna Eletrônica</title>
-</head>
-<body>
-    <div class="ue">
-        <div class="tela">
-
-        </div>
-        <div class="botoes">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>0</button>
-            <button>Branco</button>
-            <button>Corrige</button>
-            <button>Confirmar</button>
-        </div>
-    </div>
-    <script src="./urnaEletronica.js"></script>
-</body>
-</html>
+:root{
+    --cor-urna: black;
+}
+.urna{
+    background-color: antiquewhite;
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    border-radius: 10px;
+    position: fixed;
+    width: 1600px;
+    height: 750px;
+    margin: 8vh 10vh 10vh 15vh;
+}
+.tela{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 10px;
+    width: 50%;
+    height: 650px;
+}
+.botoes{
+    background-color:darkblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    border-radius: 10px;
+    width: 35%;
+    height: 650px;
+}
+h2{
+    background-color: aliceblue;
+    font-size: 65px;
+    border: 0.5px solid aliceblue;
+    padding: 0 54px 0 54px;
+    margin: 0;
+}
+.bcc button:nth-child(1){
+    background-color: aliceblue;
+    color:black
+}
+.bcc button:nth-child(2){
+    background-color: indianred;
+}
+.bcc button:nth-child(3){
+    background-color: forestgreen;
+    /* margin-top: 20px; */
+}
+button{
+    background-color: black;
+    color:aliceblue;
+    font-size: 25px;
+    width: 125px;
+    height: 80px;
+    margin: 10px;
+}
+.confirmar{
+    height: 100px
+}
