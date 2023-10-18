@@ -18,7 +18,7 @@ function urnaEletronica(){
     let seletor;
     let senha;
     let acesso = 0;
-    let encerramento = "N";
+    let pararVotacao = false;
     
     while(acesso == 0){
         senha = parseInt(prompt('Digite a senha'));
@@ -32,60 +32,38 @@ function urnaEletronica(){
     
     }   
     
-   nomecandidato1 = prompt("Digige o nome do 1° candidato: ");
-   nomecandidato2 = prompt("Digige o nome do 2° candidato: ");
-   nomecandidato3 = prompt("Digige o nome do 3° candidato: ");
+   nomecandidato1 = prompt("Digite o nome do 1° candidato: ");
+   nomecandidato2 = prompt("Digite o nome do 2° candidato: ");
+   nomecandidato3 = prompt("Digite o nome do 3° candidato: ");
 
-    while(encerramento != 'S'){
+    while(!pararVotacao){
 
         seletor = parseInt(prompt('Digite seu voto')); 
         
-        switch(seletor){
-            case(1):
-                candidato1 += 1;
-                voto++;
-                console.log('votos para o candidato '+ nomecandidato1 +': ' + candidato1);
-                break
-                
-            case(2):
-                candidato2 += 1;
-                voto++;
-                console.log('votos para o candidato '+ nomecandidato2 +': ' + candidato2);
-                break
-                
-            case(3):
-                candidato3 += 1;
-                voto++;
-                console.log('votos para o candidato '+ nomecandidato3 +': ' + candidato3);
-                break
-
-            case(5):
-                branco += 1;
-                voto++;
-                console.log('votos em branco: ' + branco);
-                break
-
-            case(8):
-                nulo += 1;
-                votonulo++;
-                console.log('votos nulo: ' + nulo);
-                break
-
-            case(0):
-                encerramento = prompt('Se quiser encerrar a votação, digite S. Caso não, digite N');
-                
-                switch(encerramento){
-                    case('S'):
-                    encerramento = "S"
-                    break
-
-                    case('N'):
-                    encerramento = "N"
-                    break
-                }
-                break
+        if(seletor == 1){
+            candidato1 += 1;
+            voto++;
+            console.log('voto para o candidato '+ nomecandidato1);
+        }else if(seletor == 2){
+            candidato2 += 1;
+            voto++;
+            console.log('voto para o candidato '+ nomecandidato2);
+        }else if(seletor == 3){
+            candidato3 += 1;
+            voto++;
+            console.log('voto para o candidato '+ nomecandidato3);
+        }else if(seletor == 5){
+            branco += 1;
+            voto++;
+            console.log('voto em branco');
+        }else if(seletor == 0){
+            pararVotacao = confirm('Deseja sair da votação ? Aperte OK para sim e Cancelar caso não');
+            console.log('Saindo da votação');
+        }else{
+            nulo += 1;
+            votonulo++;
+            console.log('voto nulo');
         }
-          
     }
 
     if(candidato1 > candidato2 && candidato1 > candidato3){
