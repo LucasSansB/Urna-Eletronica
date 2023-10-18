@@ -1,8 +1,9 @@
 :root{
-    --cor-urna: black;
+    --cor-urna: #A8A8A8;
+    --cor-botoes: #292929;
 }
 .urna{
-    background-color: antiquewhite;
+    background-color: var(--cor-urna);
     display: flex;
     align-items:center;
     justify-content: space-evenly;
@@ -10,8 +11,8 @@
     border-radius: 10px;
     position: fixed;
     width: 1600px;
-    height: 750px;
-    margin: 8vh 10vh 10vh 15vh;
+    height: 800px;
+    /* margin: 5% 5% 5% 5%; */
 }
 .tela{
     background-color: black;
@@ -21,17 +22,17 @@
     flex-direction: row;
     border-radius: 10px;
     width: 50%;
-    height: 650px;
+    height: 100%;
 }
 .botoes{
-    background-color:darkblue;
+    background-color:var(--cor-botoes);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
     border-radius: 10px;
-    width: 35%;
-    height: 650px;
+    width: 40%;
+    height: 100%;
 }
 h2{
     background-color: aliceblue;
@@ -42,23 +43,25 @@ h2{
 }
 .bcc button:nth-child(1){
     background-color: aliceblue;
-    color:black
+    color:black;
 }
 .bcc button:nth-child(2){
     background-color: indianred;
+    color:black;
 }
 .bcc button:nth-child(3){
     background-color: forestgreen;
+    color:black;
     /* margin-top: 20px; */
 }
 button{
     background-color: black;
     color:aliceblue;
-    font-size: 25px;
-    width: 125px;
-    height: 80px;
-    margin: 10px;
+    font-size: 30px;
+    width: 150px;
+    height: 110px;
+    margin: 20px;
 }
 .confirmar{
-    height: 100px
+    height: 125px;
 }
