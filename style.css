@@ -9,10 +9,11 @@
     justify-content: space-evenly;
     flex-flow: row wrap;
     border-radius: 10px;
+    padding: 50px;
     position: fixed;
     width: 1600px;
-    height: 800px;
-    /* margin: 5% 5% 5% 5%; */
+    height: 750px;
+    margin: 8vh 10vh 10vh 15vh;
 }
 .tela{
     background-color: black;
@@ -47,11 +48,76 @@ h2{
 }
 .bcc button:nth-child(2){
     background-color: indianred;
-    color:black;
+    color:black;:root{
+        --cor-urna: #A8A8A8;
+        --cor-botoes: #292929;
+    }
+    .urna{
+        background-color: var(--cor-urna);
+        display: flex;
+        align-items:center;
+        justify-content: space-evenly;
+        flex-flow: row wrap;
+        border-radius: 10px;
+        position: fixed;
+        width: 1600px;
+        height: 800px;
+        /* margin: 5% 5% 5% 5%; */
+    }
+    .tela{
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        border-radius: 10px;
+        width: 50%;
+        height: 100%;
+    }
+    .botoes{
+        background-color:var(--cor-botoes);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        border-radius: 10px;
+        width: 40%;
+        height: 100%;
+    }
+    h2{
+        background-color: aliceblue;
+        font-size: 65px;
+        border: 0.5px solid aliceblue;
+        padding: 0 54px 0 54px;
+        margin: 0;
+    }
+    .bcc button:nth-child(1){
+        background-color: aliceblue;
+        color:black;
+    }
+    .bcc button:nth-child(2){
+        background-color: indianred;
+        color:black;
+    }
+    .bcc button:nth-child(3){
+        background-color: forestgreen;
+        color:black;
+        /* margin-top: 20px; */
+    }
+    button{
+        background-color: black;
+        color:aliceblue;
+        font-size: 30px;
+        width: 150px;
+        height: 110px;
+        margin: 20px;
+    }
+    .confirmar{
+        height: 125px;
+    }
 }
 .bcc button:nth-child(3){
     background-color: forestgreen;
-    color:black;
     /* margin-top: 20px; */
 }
 button{
