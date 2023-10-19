@@ -14,7 +14,6 @@ function urnaEletronica(){
             acesso = 0;
             return;
         }
-    
     }   
 
     do{
