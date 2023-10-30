@@ -1,6 +1,32 @@
-function dataFim(){
-    let data = new Date()
-    return data;
+function dataAtual(){
+    let data = new Date();
+    let dataInicial;
+    let dataFinal;
+
+    return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()} - ${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}:${data.getMilliseconds()}`;
+}
+
+function verificarUrna(){
+
+    // Gerar o hash em: https://www.convertstring.com/pt_PT/Hash/SHA256
+
+    fetch('./urnaEletronica.js')
+        .then(conteudo => conteudo.text())
+        .then(conteudo => CryptoJS.SHA256(conteudo).toString())
+        .then(hashUrnaAtual => {
+            fetch('./hashVerificado')
+                .then(conteudo => conteudo.text())
+                .then(hashVerificado => {
+                    if(hashUrnaAtual === hashVerificado){
+                        console.log('Codigo HASH verificado, Urna Liberada');
+                    }else{
+                        console.log('Cogido HASH verificado, Urna Adulterada');
+                        console.log(`HASH Verificado:  ${hashUrnaAtual}`);
+                        console.log(`HASH Autoriazado:  ${hashVerificado}`);
+                    }
+                })
+        });
+
 }
 
 function urnaEletronica(){
@@ -10,9 +36,10 @@ function urnaEletronica(){
     let branco = 0, nulo = 0, voto = 0, porcentagembranco = 0, porcentagemnulo = 0
     let seletor, senha, acesso = 0, pararVotacao = false
 
-    console.log('Data e hora do inicio da votação ' + dataFim().toLocaleString());
+    dataInicial = dataAtual();
+    console.log('Inicio da votação: ' + dataInicial);
     
-    acesso = parseInt(prompt('Cria a senha de acesso: '));
+    acesso = parseInt(prompt('Cria a senha do mesario: '));
     console.log('Senha de acesso: ' + acesso);   
 
     do{
@@ -38,7 +65,7 @@ function urnaEletronica(){
 
     while(!pararVotacao){
 
-        seletor = parseInt(prompt(' | 1 | 1° Candidato \n | 2 | 2° Candidato \n | 3 | 3° Candidato \n | 5 | Voto em Branco \n | 0 | Sair da votação \n Qualquer valor diferente será um voto nulo \n\n Digite seu voto:')); 
+        seletor = parseInt(prompt('| 1 | 1° Candidato \n| 2 | 2° Candidato \n| 3 | 3° Candidato \n| 5 | Voto em Branco \n| 0 | Sair da votação \nQualquer valor diferente será um voto nulo \nDigite a senha para finalizar a votação \n\nDigite seu voto:')); 
         
         if(seletor == 1){
             if(confirm('ATENÇÃO: Seu voto está destinado à ' + nomeCandidato1 + ', Aperte OK caso tenha certeza. Caso não, aperte em Cancelar')){
@@ -123,30 +150,9 @@ function urnaEletronica(){
     console.log('Porcentagem de votos Nulo: ' + porcentagemnulo.toFixed(2) + '%');
     console.log('Total de votos: ' + voto);
 
-    console.log('Votação encerrada ' + dataFim().toLocaleString());
-}
+    dataFinal = dataAtual();
+    console.log('Data e hora do inicio da votação: ' + dataInicial);
+    console.log('Data e hora do final da votação: ' + dataFinal);
 
-function verificaIntegridadeUrna() {
-
-    // Gerar o hash em: https://www.convertstring.com/pt_PT/Hash/SHA256
-
-    fetch('urnaEletronica.js')
-        .then(conteudo => conteudo.text())
-        .then(conteudo => CryptoJS.SHA256(conteudo).toString())
-        .then(hashCodigoUrna => {
-
-            fetch('urnaEletronica.hash')
-                .then(conteudo => conteudo.text())
-                .then(conteudo => conteudo.toLowerCase())
-                .then(hashEsperado => {
-                    
-                    if (hashEsperado === hashCodigoUrna) {
-                        console.log('** Hash verificado, urna íntegra **');
-                    } else {
-                        console.log('** INTEGRIDADE DO CÓDIGO COMPROMETIDA — ANULAR URNA **');
-                        console.log('Hash esperado: ' + hashEsperado);
-                        console.log('Hash da urna: ' + hashCodigoUrna);
-                    }
-                });
-        });
+    verificarUrna()
 }
