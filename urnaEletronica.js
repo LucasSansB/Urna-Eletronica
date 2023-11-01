@@ -6,30 +6,36 @@ function dataAtual(){
     return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()} - ${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}:${data.getMilliseconds()}`;
 }
 
-function verificarUrna(){
+async function verificarUrna(){
+
+    let hashUrnaAtual;
+    let hashVerificado;
 
     // Gerar o hash em: https://www.convertstring.com/pt_PT/Hash/SHA256
 
-    fetch('./urnaEletronica.js')
+    await fetch('./urnaEletronica.js')
         .then(conteudo => conteudo.text())
         .then(conteudo => CryptoJS.SHA256(conteudo).toString())
-        .then(hashUrnaAtual => {
-            fetch('./hashVerificado')
-                .then(conteudo => conteudo.text())
-                .then(hashVerificado => {
-                    if(hashUrnaAtual === hashVerificado){
-                        console.log('Codigo HASH verificado, Urna Liberada');
-                    }else{
-                        console.log('Cogido HASH verificado, Urna Adulterada');
-                        console.log(`HASH Verificado:  ${hashUrnaAtual}`);
-                        console.log(`HASH Autoriazado:  ${hashVerificado}`);
-                    }
-                })
-        });
+        .then(conteudo => hashUrnaAtual = conteudo);
 
+    await fetch('./hashVerificado')
+        .then(conteudo => conteudo.text())
+        .then(conteudo => hashVerificado = conteudo);
+
+    return {
+        status: hashUrnaAtual === hashVerificado,
+        hashUrnaAtual: hashUrnaAtual,
+        hashVerificado: hashVerificado
+    };
+    
 }
 
-function urnaEletronica(){
+async function audioConfirmar(){
+    const audio = new Audio('./confirmacao.mp3')
+    await audio.play();
+}
+
+async function urnaEletronica(){
 
 
     let candidato1 = 0, candidato2 = 0, candidato3 = 0, nomeCandidato1, nomeCandidato2, nomeCandidato3, porcentagemcandidato1 = 0, porcentagemcandidato2 = 0, porcentagemcandidato3 = 0
@@ -71,6 +77,7 @@ function urnaEletronica(){
             if(confirm('ATENÇÃO: Seu voto está destinado à ' + nomeCandidato1 + ', Aperte OK caso tenha certeza. Caso não, aperte em Cancelar')){
                 candidato1 += 1;
                 voto++;
+                await audioConfirmar()
                 console.log('voto para o candidato '+ nomeCandidato1);
             }else{
                 console.log('Voto corrigido do candidato ' + nomeCandidato1);
@@ -80,6 +87,7 @@ function urnaEletronica(){
             if(confirm('ATENÇÃO: Seu voto está destinado à ' + nomeCandidato2 + ', Aperte OK caso tenha certeza. Caso não, aperte em Cancelar')){
                 candidato2 += 1;
                 voto++;
+                await audioConfirmar()
                 console.log('voto para o candidato '+ nomeCandidato2);
             }else{
                 console.log('Voto corrigido do candidato ' + nomeCandidato2);
@@ -89,6 +97,7 @@ function urnaEletronica(){
             if(confirm('ATENÇÃO: Seu voto está destinado à ' + nomeCandidato3 + ', Aperte OK caso tenha certeza. Caso não, aperte em Cancelar')){
                 candidato3 += 1;
                 voto++;
+                await audioConfirmar()
                 console.log('voto para o candidato '+ nomeCandidato3);
             }else{
                 console.log('Voto corrigido do candidato ' + nomeCandidato3);
@@ -98,6 +107,7 @@ function urnaEletronica(){
             if(confirm('ATENÇÃO: Você está votando em Branco, Aperte OK caso tenha certeza. Caso não, aperte em Cancelar')){
                 branco += 1;
                 voto++;
+                await audioConfirmar()
             console.log('voto em Branco');
             }else{
                 console.log('Voto corrigido');
@@ -107,6 +117,7 @@ function urnaEletronica(){
             pararVotacao = confirm('Deseja sair da votação ? Aperte OK para sim e Cancelar caso não');
             if(pararVotacao){
                 console.log('Saindo da votação');
+                await audioConfirmar()
             }else{
                 console.log('Voltando');
             }
@@ -154,5 +165,13 @@ function urnaEletronica(){
     console.log('Data e hora do inicio da votação: ' + dataInicial);
     console.log('Data e hora do final da votação: ' + dataFinal);
 
-    verificarUrna()
+    await verificarUrna().then(verificacao => {
+        if (verificacao.status){
+            console.log('HASH verificado e aprovado')
+        } else{
+            console.log('HASE verificado, Urna fraudada')
+            console.log(`HASH da Urna: ${verificacao.hashUrnaAtual}`);
+            console.log(`HASH da Valido: ${verificacao.hashVerificado}`);
+        }
+    })
 }
