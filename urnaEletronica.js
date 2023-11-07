@@ -29,6 +29,10 @@ function verificarUrna(){
 
 }
 
+let candidato = [
+    {nome: "Hian", num: 11, partido: "PPF", cargo: ""}
+]
+
 function urnaEletronica(){
 
 
@@ -156,3 +160,22 @@ function urnaEletronica(){
 
     verificarUrna()
 }
+
+// candidatos.sort(function(a, b) {
+//     if(a.qtdVotos > b.qtdVotos) return -1 
+//     else return true
+// })
+
+//console.log(`O candidato ganhador é: ${candidatos[0].nome} ${candidatos[0].partido} `)
+
+// for (let i=1; i < candidatos.length;i++) {
+//     if (candidatos[0].qtdVotos == candidatos[i].qtdVotos) {
+//         console.log("Empate!!!!")
+//         break
+//     }
+// }
+
+//Verifica voto para candidatos pré-configurados
+// for(let i=0; i<candidatos.length;i++) {
+//         if(candidatos[i].num==voto) console.log(candidatos[i].qtdVotos)
+// }
