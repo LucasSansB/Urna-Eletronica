@@ -1,0 +1,15 @@
+{
+"candidatos": [
+    {"nome": "Big Smoke", "num": 11, "partido": "BLL", "cargo": "Presidente", "vice":"Ryder", "coligacao": "Roxo", "qtvoto": 0, "foto": ""},
+    {"nome": "Carl Johnson", "num": 11, "partido": "GRV", "cargo": "Presidente", "vice":"Sweet", "coligacao": "Verde", "qtvoto": 0, "foto": ""},
+    {"nome": "Elielton Azteca", "num": 11, "partido": "VLA", "cargo": "Governador", "vice":"RyderRegina Azteca", "coligacao": "Roxo", "qtvoto": 0, "foto": ""},
+    {"nome": "Cesar Vialpando", "num": 11, "partido": "LV", "cargo": "Governador", "vice":"Kendl Johnson", "coligacao": "Verde", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 111, "partido": "PPF", "cargo": "Senador", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 111, "partido": "PPF", "cargo": "Senador", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 1111, "partido": "PPF", "cargo": "Deputado Federal", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 1111, "partido": "PPF", "cargo": "Deputado Federal", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 11111, "partido": "PPF", "cargo": "Deputado Estadual", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"nome": "Hian", "num": 11111, "partido": "PPF", "cargo": "Deputado Estadual", "coligacao": "", "qtvoto": 0, "foto": ""},
+    {"senha": 123456}
+]
+}
